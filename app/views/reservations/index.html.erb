@@ -1,3 +1,4 @@
+<% if logged_in? && current_user.role == "admin" %>
 <p id="notice"><%= notice %></p>
 
 <h1>Reservations</h1>
@@ -33,3 +34,4 @@
 <br>
 
 <%= link_to 'New Reservation', new_reservation_path %>
+<% end %>
