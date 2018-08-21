@@ -1,0 +1,45 @@
+<style type="text/css">
+
+    .or-seperator {
+        margin: 20px 0 10px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    .or-seperator i {
+        padding: 0 10px;
+        background: #ffffff;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }
+
+</style>
+
+<div class="container mt-4">
+  <div class="row">
+    
+    <div class="card col-md-4 mb-4">
+      <h2 class="text-center mt-4">Register Account</h2> 
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :email, placeholder: 'user@domain.com' %>
+        <%= f.input :first_name, label: 'First Name', error: 'First name is mandatory, please specify one' %>
+        <%= f.input :last_name, label: 'Last Name', error: 'Last name is mandatory, please specify one' %>
+         <%= f.input :birthdate, as: :date, start_year: Date.today.year - 16,
+                              end_year: Date.today.year - 90, discard_day: false,
+                              order: [:year, :month, :day] %>
+                          
+        <%= f.input :password, hint: 'No special characters.' %>
+        <%= f.button :submit, class:"btn btn-success btn-block" %>
+        <div class="or-seperator"><i>or</i></div>
+        <a href="/auth/google_oauth2"" class="btn btn-danger btn-block mt-0"><i class="fab fa-google" aria-hidden="true"></i> Register with <b>Google</b></a>
+      <% end %>
+        <p class="hint-text text-center small text text-muted">Existing Member?<%= link_to 'Sign in', sign_in_path, class: "text-success" %></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+    </div>
+  </div>
+</div>
+
+
+

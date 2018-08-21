@@ -1,0 +1,72 @@
+<style type="text/css">
+  .image-upload > input
+  {
+    display: none;
+  }
+  .image-upload > label {
+    cursor:pointer;
+  }
+</style>
+
+<div class="container mt-4 mb-4" id='listing-bg'>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="card col-md-5 p-4">
+    <br />
+    <%= simple_form_for @listing do |f| %>
+      <% if listing.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+          <ul>
+          <% listing.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= f.input_field :user_id, as: :hidden, value: current_user.id %>
+        <h3>What kind of place are you listing?</h3>
+        <br />
+       <%= f.input :home_type, :as => :select, :collection => Listing.home_types.keys.to_a, label: "Property Type", required: true  %>
+       
+        <%= f.input :room_type, :as => :select, :collection => Listing.room_types.keys.to_a, label: "What will guests have?", required: true %>
+
+        <%= f.input :max_guest, collection: 1..16, label: "How many guests can you accomadate?", required: true %>
+
+        <%= f.input :room, collection: 1..16, label: "How many rooms can guests use?", required: true %>
+
+        <%= f.input :bathroom,collection: 1..16, label: "How many bathrooms?", required: true %>
+
+        <br />
+         <h3>What amenities do you offer?</h3>
+        <%= f.association :tags, as: :check_boxes, label: "Amenities" %>
+        <br />
+        <h3>What is the location?</h3>
+        <%= f.input :street, label: "Street", required: true %>
+        <%= f.input :city, label: "City", required: true %>
+        <%= f.input :state, label: "State", required: true %>
+        <%= f.input :country, label: "Country", required: true %>
+       
+        <br />
+         <h3>Tell us about your listing.</h3>
+        <%= f.input :listing_name, label: "Listing Headling", required: true %>
+        <%= f.input :summary, label: "Summary" %>
+
+        <%= f.input :price,collection: 20..1000, label: "What is your rate per night?", required: true %>
+        <div class="image-upload btn btn-outline-secondary mb-2 pt-2">
+          <label for='file-input'>
+          images &nbsp;<i class="fas fa-camera-retro"></i> 
+          </label>
+          <%= f.file_field :images, multiple: true, id: "file-input" %>
+        </div>
+        <br />
+        <hr>
+        <%= f.button :submit, class: "btn-primary pull-right ml-2" %>
+        <%= link_to 'Cancel', listings_path, class: "btn btn-outline-secondary btn-md pull-right" %>    
+      <% end %>
+    </div>
+  </div>
+</div>
+<br>
+<br>

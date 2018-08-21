@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Airbnb</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- font awesome style sheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <!-- added to form to gather params at braintree checkout--> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="icon" href="https://images.sftcdn.net/images/t_app-logo-l,f_auto,dpr_auto/p/5131db10-9b31-11e6-9502-00163ec9f5fa/3137083918/airbnb-logo.png">
+    <!-- CSS STYLE -->
+    <style>
+
+      .navbar a{
+        color: #CD6155;
+      }
+
+      .card-subtitle a{
+        color: black;
+        text-decoration: none;
+      }
+
+      body {
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        font-family: 'Roboto', sans-serif;
+        text-decoration: none;
+      }
+      .jumbotron {
+        border-radius: 0 !important;
+        margin-top: 0;
+        color: #fff;
+        color: white;
+        text-shadow: black, 1px;
+        background-image: url(https://images.unsplash.com/photo-1491295005076-7840bcf778ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6a5bc7de88e97799ee8221b5f30fa8e6&auto=format&fit=crop&w=1950&q=80);
+        background-size: cover;
+      }
+    </style>
+    <!-- END CSS STYLE --> 
+    
+  </head>
+
+  <body>
+  <!--------- Navbar------------------->
+  <nav class="navbar navbar-expand-sm bg-transparent shadow-sm">
+  
+    <%= link_to image_tag("abb.svg", width: '60', height: '30'),listings_path, class: "navbar-brand" %>
+    <button class='navbar-toggler' data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ml-auto">
+        <% if logged_in? %>
+          <!-- while logged in -->
+          <li class="nav-item">
+            <%= link_to 'Sign out', sign_out_path, class: "nav-link", method: :delete %>
+          </li>
+          <% if current_user.role == "host" %>
+          <li class="nav-item">
+            <%= link_to 'New Listing', new_listing_path, class: "nav-link" %>
+          </li>
+          <% end %>
+          <li>
+            <% if current_user.avatar? %>
+              <%= link_to image_tag(current_user.avatar_url,class: 'rounded-circle',width: '30', height: '30'), current_user, class: "nav-link"%>
+            <% else %>
+              <%= link_to current_user.first_name, current_user, class: "nav-link"%>
+            <% end %>
+          </li>
+        <% else %>
+          <!-- while logged out -->
+          <li class="nav-item">
+            <%= link_to 'Create Account', sign_up_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign In', sign_in_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+    <!---------------- END NAV ----------------------> 
+
+
+    <%= yield %>
+
+  <% if logged_in? %>  
+      <!-- Footer -->
+  <div>    
+  <footer class="page-footer font-small pt-4 bg-indigo shadow-sm">
+
+      <!-- Footer Links -->
+      <div class="container text-center text-md-left">
+
+        <!-- Footer links -->
+        
+
+        <hr>
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8">
+            <!--Copyright-->
+            <p class="text-center text-md-left">© 2018 Copyright:
+              <a href="#">
+                <strong>BnB</strong>
+              </a>
+            </p>
+
+          </div>
+          <div class="col-md-5 col-lg-4 ml-lg-0">
+            <!-- Social buttons -->
+            <div class="text-center text-md-right">
+              <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-google-plus"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Footer Links -->
+    </footer>
+    <!-- Footer -->
+  </div>
+  <%end %>
+    
+  </body>
+</html>

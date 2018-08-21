@@ -1,0 +1,50 @@
+
+
+<div class="container mt-4">
+  <div class="row">
+    	<div class="col-md-3 p-4">
+    		<%= simple_form_for @user do |f| %>
+    		<% if @user.avatar? %>
+          		<%= image_tag(@user.avatar_url,class: 'rounded-circle',width: '200', height: '200') %>
+          		<br>
+          		<br>
+ 
+			     <%= f.input_field :remove_avatar, as: :hidden, value: "1",id: "user_remove_avatar", name: "user[remove_avatar]"  %>
+			     <%= f.button :submit, "Remove", class: "btn btn-sm btn-danger mt-0" %>
+	      <% else %>
+	          <%= image_tag( "http://hannsaa.com/userfiles/avatars/default.jpg", class: 'rounded-circle',width: '200', height: '200') %>
+	          <br>
+	          <br>
+	          <%= f.file_field :avatar,required: true %> 
+	          <%= f.button :submit, "Update", class: "btn btn-sm btn-danger mt-2" %>
+
+	      <% end %>
+	      
+	      <% end %>
+	      <br>
+	      <%= link_to 'View Profile', @user, class: "btn btn-block btn-outline-secondary" %>
+		</div>
+		<div class="col-md-9 mb-4">
+		<div class="card">
+			<h4 class="text-center mt-4">Required Information</h4> 
+			<p id="notice"><%= notice %></p>
+			<div class="card-body">
+				
+					<%= simple_form_for @user do |f| %>
+					<%= f.input :first_name, label: 'First Name', error: 'First name is mandatory, please specify one' %>
+					<%= f.input :last_name, label: 'Last Name', error: 'Last name is mandatory, please specify one', hint: 'Your public profile only shows your first name. When you request a booking, your host will see your first and last name.' %>
+					<%= f.input :birthdate, as: :date, start_year: Date.today.year - 16,
+					                  end_year: Date.today.year - 90, discard_day: false,
+					                  order: [:year, :month, :day], hint: "The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users." %>
+					<%= f.input :email, placeholder: 'user@domain.com', hint: 'We won’t share your private email address with other Airbnb users.' %>
+					         
+			</div>
+		</div>
+		<br>
+		<%= f.button :submit, "save", class: "btn btn-lg btn-danger" %>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+

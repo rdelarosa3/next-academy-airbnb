@@ -1,0 +1,23 @@
+<style>
+      body {
+        background-image: url("https://images.unsplash.com/photo-1499845075997-66a4f1e175a7?ixlib=rb-0.3.5&s=0a00f375947d5e481d3aedf62ad3caff&auto=format&fit=crop&w=2850&q=80");
+        background-color: #cccccc;
+         background-size: cover;
+         background-repeat: no-repeat;
+      }
+</style>
+
+<div id="clearance" class="sign-up">
+  <%= form_for @user do |form| %>
+
+    <%= render partial: '/users/form', object: form %>
+
+    <div class="submit-field">
+  
+    </div>
+  <% end %>
+</div>
+
+
+
+

@@ -1,0 +1,31 @@
+<center>
+<div class="col-md-3 mt-4">
+  <div class="container">
+    <h3> Resubmit Reservation </h3>
+    <hr>
+    <%= simple_form_for(@reservation) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+       
+      <div class="form-inputs">
+        <%= f.text_field :start_date, type: 'date', class: 'form-control'%> 
+        <br>
+        <%= f.text_field :end_date, type: 'date',class: 'form-control' %>
+
+        <%= f.association :user, as: :hidden %>
+        <%= f.association :listing, as: :hidden %>
+      </div>
+
+      <div class="form-actions">
+        <hr>
+      <%= f.button :submit, class:"btn btn-success btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</center>
+
+
+
+
+

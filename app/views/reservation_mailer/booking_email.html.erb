@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  	<center>
+		<div>
+		    <p class="text-muted">Your booking at <%= @reservation.listing.listing_name %> is confirmed and complete with AirBnB price guarantee.</p>
+			<h5><%= @user.first_name %> <%= @user.last_name %></h5>
+
+			<h3 class="text-warning">Your booking is confirmed and complete!</h3>
+			<h4>Your booking ID: 231635365</h4>
+
+		 
+			<h6 class="text-muted">You can see details of your new reservation.</h6> 
+			<%= link_to 'My Booking', reservation_url(@reservation.id), class: "btn btn-primary" %>
+		</div>
+	</center>
+  </body>
+</html>

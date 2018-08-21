@@ -1,0 +1,26 @@
+  <br>     
+  <h3> Homes around the world</h3> 
+  <br>    
+    <!-- Listings SHOW -->
+
+    <div class="card-columns">
+    	<% @listings.each do |listing| %>
+      
+		    <div class="card shadow">
+		      <%= link_to image_tag("https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fe3391048aa6a5e7e0675015330416e8&auto=format&fit=crop&w=1789&q=80", class: "card-img-top"),listing  %>
+		      <div class="card-body">
+		      	<p> <%= listing.user.first_name %> </p>
+		        <h5 class="card-text mt-2"><small class="text-muted"><%= listing.room_type %></small></h5>
+		        <h5 class="card-subtitle"><strong><%= link_to listing.listing_name, listing %></strong></h5>
+		        <p class="card-text"><%= listing.summary %></p>
+		        <p class="card-text"><small class="text-muted">$<%= listing.price %> per night - Free cancellation</small></p>
+		      </div>
+		    </div>
+
+		<% end %>		
+    </div>
+  <h6><%= paginate @listings %></h6>
+
+
+
+ 
