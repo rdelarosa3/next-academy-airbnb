@@ -1,42 +1,45 @@
 <!-- listing photos carousel -->
-<div id="mycarousel" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <% @listing.images.each_with_index do |outing, i| %>
-      <li data-target="#mycarousel" data-slide-to="<%=i %>" class="<%='active' if i == 0 %>"></li>
-    <% end %>
-  </ol>
-  <div class="carousel-inner">
-    <% @listing.images.each_with_index  do |x,i|%>
-    <div class="carousel-item<%= ' active' if i == 0 %>">
-      <%= image_tag(x.url, class:"d-block w-100 img-fluid", style:"height:550px") %>
+<% if @listing.images.any? %>
+<div class="container md-12">
+  <div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <% @listing.images.each_with_index do |outing, i| %>
+        <li data-target="#mycarousel" data-slide-to="<%=i %>" class="<%='active' if i == 0 %>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% @listing.images.each_with_index  do |x,i|%>
+      <div class="carousel-item<%= ' active' if i == 0 %>">
+        <%= image_tag(x.url, class:"d-block w-100 img-fluid", style:"height:550px") %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
+    <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
-
+<% end %>
 <br />
 <br />
 
 <!-- listing information  -->
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mb-2">
       <span><%= @listing.room_type %></span>
       <div class="pull-right"><%= link_to @listing.user.first_name, @listing.user %> </div>
       <br>
       <div class="pull-right">
         <% if @listing.user.avatar? %>
-            <%= image_tag(@listing.user.avatar_url, class: 'rounded-circle',width: '50', height: '50') %>
+            <%= link_to image_tag(@listing.user.avatar_url, class: 'rounded-circle',width: '50', height: '50'), @listing.user %>
         <% else %>
-            <%= image_tag( "http://hannsaa.com/userfiles/avatars/default.jpg", class: 'rounded-circle',width: '50', height: '50') %>
+            <%= link_to image_tag( "http://hannsaa.com/userfiles/avatars/default.jpg", class: 'rounded-circle',width: '50', height: '50'), @listing.user %>
         <% end %>
       </div>
       <h2><%= @listing.listing_name %></h2>
@@ -53,7 +56,7 @@
       </div>        
     </div>
     <div class="col-md-5">
-      <div class="card p-4 pull-right"> 
+      <div class="card p-4 md-pull-right"> 
         
         <center><p id="notice"><%= notice %></p></center>
          <p> $<%= @listing.price %><em> per night</em></p>

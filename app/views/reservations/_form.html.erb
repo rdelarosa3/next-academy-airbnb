@@ -1,7 +1,7 @@
 <center>
 <div class="col-md-3 mt-4">
   <div class="container">
-    <h3> Resubmit Reservation </h3>
+    <h3> Reservation </h3>
     <hr>
     <%= simple_form_for(@reservation) do |f| %>
       <%= f.error_notification %>
@@ -18,7 +18,11 @@
 
       <div class="form-actions">
         <hr>
-      <%= f.button :submit, class:"btn btn-success btn-block" %>
+
+      <%= f.button :submit, "Update", class: "btn btn-success btn-success" %>
+       <% if action_name == "edit" %>
+      <%= link_to 'Cancel', @reservation, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger pull-right ml-2" %>
+      <% end %>
       </div>
     <% end %>
   </div>

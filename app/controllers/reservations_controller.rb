@@ -42,7 +42,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to @reservation, notice: 'Reservation Cancelled' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -54,9 +54,12 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    @listing = @reservation.listing
     @reservation.destroy
+    p @listing
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to @listing, notice: 'Reservation was successfully destroyed.' }
+      # format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

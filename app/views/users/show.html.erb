@@ -1,13 +1,15 @@
-<div class="container mt-4 pt-4">
+<div class="container md-12 mt-4 pt-4">
   <div class="row">
     <div class="col-md-4">
+      <center>
       <% if @user.avatar? %>
           <%= image_tag(@user.avatar_url, class: 'rounded-circle',width: '300', height: '300') %>
       <% else %>
           <%= image_tag( "http://hannsaa.com/userfiles/avatars/default.jpg", class: 'rounded-circle',width: '300', height: '300') %>
       <% end %>
+      </center>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-4">
       <h3> Hey, I’m <%= @user.first_name %>!</h3>
       <p> Joined on <%= @user.created_at.strftime("%B %Y") %></p>
       <% if current_user == @user %>

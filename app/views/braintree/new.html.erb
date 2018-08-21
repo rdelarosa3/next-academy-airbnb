@@ -111,7 +111,7 @@
     			    <%= form.hidden_field "reservation", value: @reservation.id %> <!-- added to form to gather params at braintree checkout-->
 
               <div class="button-container pull-right mb-3">
-              <%= form.submit "Submit", disabled: true, class: "btn btn--green pull-right ml-2", id: "submit-payment-btn" %> 
+              <%= form.submit "Submit", disabled: true, class: "btn btn-success pull-right ml-2", id: "submit-payment-btn" %> 
               <%= link_to 'Back', reservation_url(@reservation.id), class: "btn btn-secondary ml-2" %> <!-- added to form to return to reservation-->
     			    
     			    </div>
