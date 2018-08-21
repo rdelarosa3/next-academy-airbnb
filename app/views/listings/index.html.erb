@@ -16,19 +16,19 @@
   <% end %>
   <br>
     <!-- Search bars -->
-  <div class="container md-12 pl-5 mt-3 mb-0 pb-0 ">
+  <div class="container xs-12 m-auto p-auto ">
     <div class="row">
       <div class="col-xs-12">
         <div class="panel panel-primary">
           <div class="form-inline"> 
             <%= form_tag listings_path, remote: true, method: :get do %>
               
-              <%= search_field_tag :searchwords, params[:searchwords], placeholder: "keywords..", class: "form-control" %>
-              <%= date_field(:date_start, nil, class: "form-control") %>
-              <%= date_field(:date_end, nil, class: "form-control") %>
-              <%= search_field_tag :searchmin, params[:searchmin], placeholder: "min..", class: "form-control", style: "width:'80px"%>
-              <%= search_field_tag :searchmax, params[:searchmax], placeholder: "max..", class: "form-control" %>
-              <%= submit_tag "search", name: :nil, class: "btn btn-danger" %>
+              <%= search_field_tag :searchwords, params[:searchwords], placeholder: "keywords..", class: "form-control m-1" %>
+              <%= date_field(:date_start, nil, class: "form-control m-1") %>
+              <%= date_field(:date_end, nil, class: "form-control m-1") %>
+              <%= search_field_tag :searchmin, params[:searchmin], placeholder: "min price..", class: "form-control m-1", style: "width:'80px"%>
+              <%= search_field_tag :searchmax, params[:searchmax], placeholder: "max price..", class: "form-control m-1" %>
+              <%= submit_tag "search", name: :nil, class: "btn btn-danger m-1" %>
 
             <% end %>
           </div>

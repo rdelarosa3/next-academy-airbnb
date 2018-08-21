@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="icon" href="https://images.sftcdn.net/images/t_app-logo-l,f_auto,dpr_auto/p/5131db10-9b31-11e6-9502-00163ec9f5fa/3137083918/airbnb-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS STYLE -->
     <style>
 
@@ -42,6 +43,7 @@
         background-image: url(https://images.unsplash.com/photo-1491295005076-7840bcf778ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6a5bc7de88e97799ee8221b5f30fa8e6&auto=format&fit=crop&w=1950&q=80);
         background-size: cover;
       }
+
     </style>
     <!-- END CSS STYLE --> 
     
@@ -52,7 +54,7 @@
   <nav class="navbar navbar-expand-sm bg-transparent shadow-sm">
   
     <%= link_to image_tag("abb.svg", width: '60', height: '30'),listings_path, class: "navbar-brand" %>
-    <button class='navbar-toggler' data-toggle="collapse" data-target="#navbarMenu">
+    <button class='navbar-light navbar-toggler' data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarMenu">
