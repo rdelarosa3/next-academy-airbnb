@@ -22,7 +22,7 @@ class BraintreeController < ApplicationController
 	  	booking.status = 1 #change status to booked after payment
 	  	booking.save
 	  	host = booking.listing.user.id
-	  	ReservationMailer.booking_email(current_user,booking, host).deliver
+	  	# ReservationMailer.booking_email(current_user,booking, host).deliver
 		# ReservationJob.perform_later(current_user,booking, host) # Job to multithread system
 	    redirect_to reservation_url(booking_id), :flash => { :notice => "Transaction successful!" }# back to reservation page
 	  else
