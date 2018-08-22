@@ -14,6 +14,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Seed Users
+
 user = {}
 user['password'] = 'asdf'
 
@@ -47,8 +48,8 @@ listing = {}
 uids = []
 User.all.each { |u| uids << u.id }
 
-# ActiveRecord::Base.transaction do
-  40.times do 
+
+  20.times do 
     listing['listing_name'] = Faker::App.name
     listing['country'] = Faker::Address.country
     listing['city'] = Faker::Address.city
@@ -64,14 +65,14 @@ User.all.each { |u| uids << u.id }
     listing['user_id'] = uids.sample
     Listing.create(listing)
   end
-# end
+
 
 # See taggings
 tagging = {}
 tids = []
 Tag.all.each { |t| tids << t.id }
 
-# ActiveRecord::Base.transaction do
+
 Listing.all.each do |l|
   rand(2..4).times do
     tagging['listing_id'] = l.id
@@ -80,6 +81,22 @@ Listing.all.each do |l|
   end
 end
 
-# end
+avatar_array = ["https://randomuser.me/api/portraits/men/31.jpg","https://randomuser.me/api/portraits/men/64.jpg","https://randomuser.me/api/portraits/women/90.jpg","https://randomuser.me/api/portraits/women/62.jpg","https://randomuser.me/api/portraits/women/49.jpg"]
+User.all.each do |person|
+  person.remote_avatar_url = avatar_array.shuffle.sample
+  person.save
+end
 
-# end
+
+temp_array = ["https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=682a7e2a70ae366b3610b014f5bb5a97&auto=format&fit=crop&w=1950&q=80","https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ee7b83f80f90879486ced1b45501ce21&auto=format&fit=crop&w=1949&q=80","https://images.unsplash.com/photo-1499955085172-a104c9463ece?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1c30274d56662166fdafd604140d2df4&auto=format&fit=crop&w=1950&q=80","https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ba2b9dcc1af593a7d93ed9b4ed952ac&auto=format&fit=crop&w=1953&q=80","https://images.unsplash.com/photo-1488805990569-3c9e1d76d51c?ixlib=rb-0.3.5&s=2b1e8a77c89e531d8a93db3995a54bc8&auto=format&fit=crop&w=1950&q=80","https://images.unsplash.com/photo-1472504929007-6d7cd0ef7d50?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a08e9460cac871fd84d91b27214d5e35&auto=format&fit=crop&w=1950&q=80"]
+images_array = []
+
+2.times do
+  Listing.all.each do |place|
+  images_array << temp_array.shuffle.sample
+  images_array << temp_array.shuffle.sample
+  place.remote_images_urls = images_array
+  place.save
+  images_array = []
+  end
+end
